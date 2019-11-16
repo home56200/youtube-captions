@@ -11,7 +11,7 @@ xhook.after(function (request, response) {
             try {
                 JSON.parse(ytplayer.config.args.player_response).captions.playerCaptionsTracklistRenderer.captionTracks.forEach(lang => {
                     lang.languageCode = lang.languageCode.toLocaleLowerCase()
-                    if (userLang && userLang.languageCode == 'zh-cn') return
+                    if (userLang && userLang.languageCode == 'zh-tw') return
                     if (zhReg.test(lang.languageCode)) {
                         lang.baseUrl += '&fmt=srv3'
                         userLang = lang
@@ -22,7 +22,7 @@ xhook.after(function (request, response) {
             }
 
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', userLang ? userLang.baseUrl : `${url}&tlang=zh-Hans`, false);
+            xhr.open('GET', userLang ? userLang.baseUrl : `${url}&tlang=zh-Hant`, false);
             xhr.send();
 
             xhr.responseXML.querySelectorAll('p').forEach(e => {
